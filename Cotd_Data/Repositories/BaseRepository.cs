@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Cotd_Data.Models.Cards;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cotd_Data.Repositories;
 
