@@ -4,8 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cotd_Data.Repositories.CardRepositories;
 
-public class UnitCardRepository(DbContext ctx) : BaseRepository<UnitCardData>(ctx), IUnitCardRepository
+public class UnitCardRepository : CardRepository<UnitCardData>, IUnitCardRepository
 {
+	public UnitCardRepository(DbContext ctx) : base(ctx)
+	{
+	}
+
 	public override UnitCardData GetOne(int id)
 	{
 		var card = this.GetAll().FirstOrDefault(c => c.Id == id);
@@ -25,6 +29,8 @@ public class UnitCardRepository(DbContext ctx) : BaseRepository<UnitCardData>(ct
 		in UnitTypes type)
 	{
 		UnitCardData card = this.GetOne(id);
+
+		//UpdateCard(id, name, description, image, envoyCost);
 
 		card.Name = name;
 		card.Description = description;

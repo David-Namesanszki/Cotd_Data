@@ -4,8 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cotd_Data.Repositories.CardRepositories;
 
-public class ConstructionCardRepository(DbContext ctx) : BaseRepository<ConstructionCardData>(ctx), IConstructionCardRepository
+public class ConstructionCardRepository : CardRepository<ConstructionCardData>, IConstructionCardRepository
 {
+	public ConstructionCardRepository(DbContext ctx) : base(ctx)
+	{
+	}
+
 	public override ConstructionCardData GetOne(int id)
 	{
 		var card = this.GetAll().FirstOrDefault(c => c.Id == id);

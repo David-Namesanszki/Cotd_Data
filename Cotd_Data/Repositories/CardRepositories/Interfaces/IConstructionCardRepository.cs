@@ -1,9 +1,8 @@
 ﻿using Cotd_Data.Models.Cards;
 
-namespace Cotd_Data.Repositories.CardRepositories.Interfaces
+namespace Cotd_Data.Repositories.CardRepositories.Interfaces;
+
+public interface IConstructionCardRepository : ICardRepository<ConstructionCardData>
 {
-    public interface IConstructionCardRepository : IBaseRepository<ConstructionCardData>
-	{
-        void UpdateCard(int id, string name, string description, string image, int envoyCost, int turnsToBuild, int armor, int power);
-    }
+	void UpdateCard(int id, string name, string description, string image, int envoyCost, int turnsToBuild, int armor, int power);
 }

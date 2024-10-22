@@ -4,8 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cotd_Data.Repositories.CardRepositories;
 
-public class FireCardRepository(DbContext ctx) : BaseRepository<FireCardData>(ctx), IFireCardRepository
+public class FireCardRepository : CardRepository<FireCardData>, IFireCardRepository
 {
+	public FireCardRepository(DbContext ctx) : base(ctx)
+	{
+	}
+
 	public override FireCardData GetOne(int id)
 	{
 		var card = this.GetAll().FirstOrDefault(c => c.Id == id);
