@@ -6,18 +6,19 @@ namespace Cotd_Data.Repositories.CardRepositories;
 
 public class ConstructionCardRepository : CardRepository<ConstructionCardData>, IConstructionCardRepository
 {
-	public ConstructionCardRepository(DbContext ctx) : base(ctx)
+
+	public ConstructionCardRepository(string dataPath) : base(dataPath)
 	{
 	}
 
-	public override ConstructionCardData GetOne(int id)
+	public override ConstructionCardData GetOne(string id)
 	{
 		var card = this.GetAll().FirstOrDefault(c => c.Id == id);
 		return card ?? throw new KeyNotFoundException($"Card with ID {id} not found.");
 	}
 
 	public void UpdateCard(
-		int id,
+		string id,
 		string name,
 		string description,
 		string image,
@@ -26,7 +27,14 @@ public class ConstructionCardRepository : CardRepository<ConstructionCardData>, 
 		int armor,
 		int power)
 	{
-		ConstructionCardData card = GetOne(id);
+		var datas = GetAll();
+
+		ConstructionCardData? card = datas.FirstOrDefault(c => c.Id == id);
+
+		if (card == null)
+		{
+			throw new KeyNotFoundException($"Card with ID {id} not found.");
+		}
 
 		card.Name = name;
 		card.Description = description;
@@ -36,6 +44,6 @@ public class ConstructionCardRepository : CardRepository<ConstructionCardData>, 
 		card.Armor = armor;
 		card.Power = power;
 
-		Ctx.SaveChanges();
+		DataSaver<ConstructionCardData>.Save(datas, dataPath);
 	}
 }

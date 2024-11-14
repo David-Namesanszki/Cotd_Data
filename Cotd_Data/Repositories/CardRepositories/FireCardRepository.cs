@@ -6,25 +6,32 @@ namespace Cotd_Data.Repositories.CardRepositories;
 
 public class FireCardRepository : CardRepository<FireCardData>, IFireCardRepository
 {
-	public FireCardRepository(DbContext ctx) : base(ctx)
+	public FireCardRepository(string dataPath) : base(dataPath)
 	{
 	}
 
-	public override FireCardData GetOne(int id)
+	public override FireCardData GetOne(string id)
 	{
 		var card = this.GetAll().FirstOrDefault(c => c.Id == id);
 		return card ?? throw new KeyNotFoundException($"Card with ID {id} not found.");
 	}
 
 	public void UpdateCard(
-		int id,
+		string id,
 		string name,
 		string description,
 		string image,
 		int envoyCost,
 		int fireCost)
 	{
-		FireCardData card = GetOne(id);
+		var datas = GetAll();
+
+		FireCardData? card = datas.FirstOrDefault(c => c.Id == id);
+
+		if (card == null)
+		{
+			throw new KeyNotFoundException($"Card with ID {id} not found.");
+		}
 
 		card.Name = name;
 		card.Description = description;
@@ -32,6 +39,6 @@ public class FireCardRepository : CardRepository<FireCardData>, IFireCardReposit
 		card.EnvoyCost = envoyCost;
 		card.FireCost = fireCost;
 
-		Ctx.SaveChanges();
+		DataSaver<FireCardData>.Save(datas, dataPath);
 	}
 }

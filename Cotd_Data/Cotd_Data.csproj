@@ -17,11 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="CotdDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="CotdDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Folder Include="Repositories\DeckRepositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Datas\Captains\Captains.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

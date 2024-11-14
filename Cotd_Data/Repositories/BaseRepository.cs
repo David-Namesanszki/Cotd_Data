@@ -5,41 +5,38 @@ namespace Cotd_Data.Repositories;
 
 public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
 {
-	/// <summary>
-	/// Initializes a new instance of the <see cref="BaseRepository{T}"/> class.
-	/// Makes a connection with the data layer.
-	/// </summary>
-	/// <param name="ctx">The database context from the data layer.</param>
-	protected BaseRepository(DbContext ctx)
+	protected string dataPath;
+	protected BaseRepository(string dataPath)
 	{
-		this.Ctx = ctx;
+		this.dataPath = dataPath;
 	}
 
 	/// <summary>
 	/// Gets or sets the database context.
 	/// </summary>
-	public DbContext Ctx { get; set; }
 
 	/// <inheritdoc/>
-	public IQueryable<T> GetAll()
+	public IList<T> GetAll()
 	{
-		return this.Ctx.Set<T>();
+		return DataLoader<T>.Load(dataPath);
 	}
 
 	/// <inheritdoc/>
-	public abstract T GetOne(int id);
+	public abstract T GetOne(string id);
 
 	/// <inheritdoc/>
 	public void Insert(T entity)
 	{
-		this.Ctx.Set<T>().Add(entity);
-		this.Ctx.SaveChanges();
+		var datas = DataLoader<T>.Load(dataPath);
+		datas.Add(entity);
+		DataSaver<T>.Save(datas, dataPath);
 	}
 
 	/// <inheritdoc/>
 	public void Remove(T entity)
 	{
-		this.Ctx.Set<T>().Remove(entity);
-		this.Ctx.SaveChanges();
+		var datas = DataLoader<T>.Load(dataPath);
+		datas.Remove(entity);
+		DataSaver<T>.Save(datas, dataPath);
 	}
 }

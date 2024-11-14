@@ -8,13 +8,13 @@ namespace Cotd_Data.Repositories
 		/// </summary>
 		/// <param name="id">Variable which the search is based on.</param>
 		/// <returns>Returns an object.</returns>
-		T GetOne(int id);
+		T GetOne(string id);
 
 		/// <summary>
 		/// Gets all objects.
 		/// </summary>
 		/// <returns>Return all objects from the stack.</returns>
-		IQueryable<T> GetAll();
+		IList<T> GetAll();
 
 		/// <summary>
 		/// Inserts an object into the database stack.

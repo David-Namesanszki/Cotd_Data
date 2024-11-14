@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Microsoft.VisualBasic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Cotd_Data.Models.Cards;
 
@@ -9,12 +12,21 @@ public enum UnitTypes
     Support
 }
 
-[Table("UnitCards")]
 public class UnitCardData : CardData
 {
-    public int TurnsToFormation { get; set; }
-    public int Health { get; set; }
-    public int Power { get; set; }
-    public int Armor { get; set; }
-    public UnitTypes Type { get; set; }
+	[JsonPropertyName("turnsToFormation")]
+	public int TurnsToFormation { get; set; } = 0;
+	[JsonPropertyName("health")]
+	public int Health { get; set; } = 0;
+	[JsonPropertyName("power")]
+	public int Power { get; set; } = 0;
+	[JsonPropertyName("armor")]
+	public int Armor { get; set; } = 0;
+    [JsonPropertyName("type")]
+	public UnitTypes Type { get; set; } = UnitTypes.Melee;
+
+	public override string ToString()
+	{
+		return $"{base.ToString()}, TurnsToFormation = {TurnsToFormation}, Health = {Health}, Power = {Power}, Armor = {Armor}, Type = {Type}";
+	}
 }

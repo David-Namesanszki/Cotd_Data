@@ -1,10 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Cotd_Data.Models.Cards;
 
-[Table("FireCards")]
 public class FireCardData : CardData
 {
-    public int FireCost { get; set; }
+	[JsonPropertyName("fireCost")]
+	public int FireCost { get; set; } = 0;
 
+	public override string ToString()
+	{
+		return $"{base.ToString()}, FireCost = {FireCost}";
+	}
 }

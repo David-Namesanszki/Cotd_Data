@@ -1,0 +1,29 @@
+[
+  {
+    "id": "3d6a6941-1e00-42cb-b44e-533a1bafd60b",
+    "name": "Csa",
+    "resources": {
+      "heartwoodAmount": 0,
+      "barkOreAmount": 0,
+      "bloodSapAmount": 0
+    },
+    "unlockedCards": [],
+    "unlockedCaptains": [],
+    "ongoingRaid": {
+      "currentLocation": "4568a3b4-fe1d-4a66-ac43-ac3997bb9f15",
+      "map": {
+        "locationPaths": [],
+        "locations": []
+      },
+      "loot": {
+        "heartwoodAmount": 0,
+        "barkOreAmount": 0,
+        "bloodSapAmount": 0
+      },
+      "deck": {
+        "id": "05f43eff-f5d9-404e-9c0e-e6a6aa550ad1",
+        "cards": []
+      }
+    }
+  }
+]

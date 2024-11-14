@@ -6,18 +6,18 @@ namespace Cotd_Data.Repositories.CardRepositories;
 
 public class UnitCardRepository : CardRepository<UnitCardData>, IUnitCardRepository
 {
-	public UnitCardRepository(DbContext ctx) : base(ctx)
+	public UnitCardRepository(string dataPath) : base(dataPath)
 	{
 	}
 
-	public override UnitCardData GetOne(int id)
+	public override UnitCardData GetOne(string id)
 	{
 		var card = this.GetAll().FirstOrDefault(c => c.Id == id);
 		return card ?? throw new KeyNotFoundException($"Card with ID {id} not found.");
 	}
 
 	public void UpdateCard(
-		int id,
+		string id,
 		string name,
 		string description,
 		string image,
@@ -28,9 +28,14 @@ public class UnitCardRepository : CardRepository<UnitCardData>, IUnitCardReposit
 		int power,
 		in UnitTypes type)
 	{
-		UnitCardData card = this.GetOne(id);
+		var datas = GetAll();
 
-		//UpdateCard(id, name, description, image, envoyCost);
+		UnitCardData? card = datas.FirstOrDefault(c => c.Id == id);
+
+		if (card == null)
+		{
+			throw new KeyNotFoundException($"Card with ID {id} not found.");
+		}
 
 		card.Name = name;
 		card.Description = description;
@@ -42,6 +47,6 @@ public class UnitCardRepository : CardRepository<UnitCardData>, IUnitCardReposit
 		card.Power = power;
 		card.Type = type;
 
-		Ctx.SaveChanges();
+		DataSaver<UnitCardData>.Save(datas, dataPath);
 	}
 }

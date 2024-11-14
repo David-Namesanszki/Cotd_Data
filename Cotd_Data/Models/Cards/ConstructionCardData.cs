@@ -1,11 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Cotd_Data.Models.Cards;
 
-[Table("ConstructionCards")]
 public class ConstructionCardData : CardData
 {
-    public int Armor { get; set; }
-    public int Power { get; set; }
-    public int TurnsToBuild { get; set; }
+	[JsonPropertyName("armor")]
+	public int Armor { get; set; } = 0;
+	[JsonPropertyName("power")]
+	public int Power { get; set; } = 0;
+	[JsonPropertyName("turnsToBuild")]
+	public int TurnsToBuild { get; set; } = 0;
+
+	public override string ToString()
+	{
+		return $"{base.ToString()}, Armor = {Armor}, Power = {Power}, TurnsToBuild = {TurnsToBuild}";
+	}
 }
