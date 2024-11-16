@@ -1,6 +1,4 @@
-﻿using Cotd_Data.Models.Cards;
-using Cotd_Data.Models.Games.Decks;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Cotd_Data.Models.Captains;
 
@@ -22,7 +20,7 @@ public class CaptainData
 	[JsonPropertyName("armor")]
 	public int Armor { get; set; } = 0;
 	[JsonPropertyName("cards")]
-	public DeckData Deck { get; set; } = new DeckData();
+	public IList<string> CardIds { get; set; } = [];
 
 	public override string ToString()
 	{

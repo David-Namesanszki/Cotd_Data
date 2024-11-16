@@ -1,5 +1,4 @@
-﻿using Cotd_Data.Models.Cards;
-using Microsoft.EntityFrameworkCore;
+﻿using Cotd_Data._Interfaces;
 
 namespace Cotd_Data.Repositories;
 
@@ -32,6 +31,7 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
 		DataSaver<T>.Save(datas, dataPath);
 	}
 
+	public abstract void Update(T entity);
 	/// <inheritdoc/>
 	public void Remove(T entity)
 	{

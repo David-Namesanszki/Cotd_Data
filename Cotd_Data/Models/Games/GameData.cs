@@ -1,4 +1,5 @@
-﻿using Cotd_Data.Models.Cards;
+﻿using Cotd_Data.Models.Captains;
+using Cotd_Data.Models.Cards;
 using Cotd_Data.Models.Games.Raids;
 using Cotd_Data.Models.Games.Resources;
 using System.ComponentModel.DataAnnotations;
@@ -16,9 +17,10 @@ public class GameData
 	[JsonPropertyName("resources")]
 	public ResourceData Resources { get; set; } = new ResourceData();
 	[JsonPropertyName("unlockedCards")]
-	public ICollection<string> UnlockedCardIds { get; set; } = [];
+	public IList<string> UnlockedCardIds { get; set; } = [];
 	[JsonPropertyName("unlockedCaptains")]
-	public ICollection<string> UnlockedCaptainIds { get; set; } = [];
+	public IList<string> UnlockedCaptainIds { get; set; } = [];
 	[JsonPropertyName("ongoingRaid")]
 	public RaidData? OngoingRaid { get; set; } = null;
+
 }

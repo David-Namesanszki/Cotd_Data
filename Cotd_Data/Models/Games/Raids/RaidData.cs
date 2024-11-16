@@ -1,8 +1,5 @@
-﻿using Cotd_Data.Models.Cards;
-using Cotd_Data.Models.Games.Decks;
+﻿using Cotd_Data.Models.Captains;
 using Cotd_Data.Models.Games.Raids.Maps;
-using Cotd_Data.Models.Games.Raids.Maps.LocationPaths;
-using Cotd_Data.Models.Games.Raids.Maps.Locations;
 using Cotd_Data.Models.Games.Resources;
 using System.Text.Json.Serialization;
 
@@ -17,5 +14,7 @@ public class RaidData
     [JsonPropertyName("loot")]
 	public ResourceData Loot { get; set; } = new ResourceData();
 	[JsonPropertyName("deck")]
-	public DeckData Deck { get; set; } = new DeckData();
+	public IList<string> CardIds { get; set; } = [];
+	[JsonPropertyName("captain")]
+	public CaptainData Captain { get; set; } = new CaptainData();
 }
