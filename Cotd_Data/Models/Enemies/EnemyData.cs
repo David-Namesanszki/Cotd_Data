@@ -2,10 +2,8 @@
 
 namespace Cotd_Data.Models.Enemies;
 
-public class EnemyData
+public class EnemyData : EntityData
 {
-	[JsonPropertyName("id")]
-	public string Id { get; set; } = string.Empty;
 	[JsonPropertyName("splashArt")]
 	public string Image { get; set; } = string.Empty;
 	[JsonPropertyName("cards")]
@@ -13,7 +11,9 @@ public class EnemyData
 
 	public override string ToString()
 	{
-		string cardsString = string.Join(", ", CardIds);
-		return $"EnemyData: Id = {Id}, Image = {Image}, Cards = [{cardsString}]";
+		return $"{nameof(EnemyData)}: " +
+			   $"{nameof(Id)}={Id}, " +
+			   $"{nameof(Image)}={Image}, " +
+			   $"{nameof(CardIds)}=[{string.Join(", ", CardIds)}]";
 	}
 }

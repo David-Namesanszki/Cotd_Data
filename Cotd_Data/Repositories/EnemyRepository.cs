@@ -12,8 +12,8 @@ public class EnemyRepository : BaseRepository<EnemyData>, IEnemyRepository
 
     public override EnemyData GetOne(string id)
     {
-        var captain = GetAll().FirstOrDefault(c => c.Id == id);
-        return captain ?? throw new KeyNotFoundException($"Enemy with ID {id} not found.");
+        var enemy = GetAll().FirstOrDefault(c => c.Id == id);
+        return enemy ?? throw new KeyNotFoundException($"Enemy with ID {id} not found.");
     }
 
     public override void Update(EnemyData entity)

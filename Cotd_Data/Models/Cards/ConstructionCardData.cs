@@ -14,6 +14,9 @@ public class ConstructionCardData : CardData
 
 	public override string ToString()
 	{
-		return $"{base.ToString()}, Armor = {Armor}, Power = {Power}, TurnsToBuild = {TurnsToBuild}";
+		return $"{base.ToString()}, " +
+			   $"{nameof(Armor)}={Armor}, "+
+			   $"{nameof(Power)}={Power}, " +
+			   $"{nameof(TurnsToBuild)}={TurnsToBuild}";
 	}
 }

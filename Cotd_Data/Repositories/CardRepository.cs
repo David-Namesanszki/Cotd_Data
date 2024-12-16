@@ -22,11 +22,14 @@ public class CardRepository : BaseRepository<CardData>, ICardRepository
 
         CardData? card = datas.FirstOrDefault(c => c.Id == entity.Id) ?? throw new KeyNotFoundException($"Card with ID {entity.Id} not found.");
 
-        foreach (var propInfo in typeof(CardData).GetProperties())
-        {
-            propInfo.SetValue(entity, card);
-        }
+		foreach (var propInfo in entity.GetType().GetProperties())
+		{
+			if (propInfo.CanWrite) // Ensure the property is writable
+			{
+				propInfo.SetValue(card, propInfo.GetValue(entity));
+			}
+		}
 
-        DataSaver<CardData>.Save(datas, dataPath);
+		DataSaver<CardData>.Save(datas, dataPath);
     }
 }

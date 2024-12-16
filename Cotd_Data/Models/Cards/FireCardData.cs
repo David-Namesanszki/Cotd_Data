@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Cotd_Data.Models.Cards;
 
@@ -10,6 +9,7 @@ public class FireCardData : CardData
 
 	public override string ToString()
 	{
-		return $"{base.ToString()}, FireCost = {FireCost}";
+		return $"{base.ToString()}, " +
+			   $"{nameof(FireCost)}={FireCost}";
 	}
 }

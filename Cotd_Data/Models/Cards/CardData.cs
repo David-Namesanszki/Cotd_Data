@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Cotd_Data.Models.Cards.Effects;
+using System.Text.Json.Serialization;
 
 namespace Cotd_Data.Models.Cards;
 
@@ -13,16 +14,18 @@ public enum CardTypes
 	Undefined,
 }
 
-public abstract class CardData
+[JsonPolymorphic]
+[JsonDerivedType(typeof(CommandCardData), nameof(CommandCardData))]
+[JsonDerivedType(typeof(UnitCardData), nameof(UnitCardData))]
+public abstract class CardData : EntityData
 {
-	[JsonPropertyName("id")]
-	public string Id { get; set; } = string.Empty;
 	[JsonPropertyName("name")]
 	public string Name { get; set; } = string.Empty;
 
 	[JsonPropertyName("description")]
 	public string Description { get; set; } = string.Empty;
-	[JsonPropertyName("type")]
+
+	[JsonPropertyName("cardType")]
 	public CardTypes CardType { get; set; } = CardTypes.Undefined;
 
 	[JsonPropertyName("image")]
@@ -31,8 +34,22 @@ public abstract class CardData
 	[JsonPropertyName("envoyCost")]
 	public int EnvoyCost { get; set; } = 0;
 
+	[JsonPropertyName("effects")]
+	public IList<EffectData> Effects { get; set; } = [];
+
 	public override string ToString()
 	{
-		return $"CardData: Id = {Id}, Name = {Name}, Description = {Description}, Image = {Image}, EnvoyCost = {EnvoyCost}";
+		string effectsSummary = Effects != null && Effects.Count > 0
+			? $"[{string.Join(", ", Effects.Select(effect => effect.ToString()))}]"
+			: "[]";
+
+		return $"{nameof(CardData)}: " +
+			   $"{nameof(Id)}={Id}, " +
+			   $"{nameof(Name)}={Name}, " +
+			   $"{nameof(Description)}={Description}, " +
+			   $"{nameof(CardType)}={CardType}, " +
+			   $"{nameof(Image)}={Image}, " +
+			   $"{nameof(EnvoyCost)}={EnvoyCost}, " +
+			   $"{nameof(Effects)}={effectsSummary}";
 	}
 }

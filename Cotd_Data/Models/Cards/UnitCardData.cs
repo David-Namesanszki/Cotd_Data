@@ -19,11 +19,16 @@ public class UnitCardData : CardData
 	public int Power { get; set; } = 0;
 	[JsonPropertyName("armor")]
 	public int Armor { get; set; } = 0;
-    [JsonPropertyName("type")]
-	public UnitTypes Type { get; set; } = UnitTypes.Melee;
+	[JsonPropertyName("unitType")]
+	public UnitTypes UnitType { get; set; } = UnitTypes.Melee;
 
 	public override string ToString()
 	{
-		return $"{base.ToString()}, TurnsToFormation = {TurnsToFormation}, Health = {Health}, Power = {Power}, Armor = {Armor}, Type = {Type}";
+		return $"{base.ToString()}, " + 
+			   $"{nameof(TurnsToFormation)}={TurnsToFormation}, " +
+			   $"{nameof(Health)}={Health}, " + 
+			   $"{nameof(Power)}={Power}, " +
+			   $"{nameof(Armor)}={Armor}, " + 
+			   $"{nameof(UnitType)}={UnitType}";
 	}
 }

@@ -2,4 +2,8 @@
 
 public class CommandCardData : CardData
 {
+	public override string ToString()
+	{
+		return $"{nameof(CommandCardData)}: {base.ToString()}";
+	}
 }

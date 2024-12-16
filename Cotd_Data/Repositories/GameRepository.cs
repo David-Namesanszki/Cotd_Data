@@ -1,7 +1,7 @@
 ﻿using Cotd_Data._Interfaces;
 using Cotd_Data.Models.GameInfos;
 using Cotd_Data.Models.Games.Raids;
-using Cotd_Data.Models.Games.Resources;
+using Cotd_Data.ValueObjects;
 
 namespace Cotd_Data.Repositories;
 
@@ -13,8 +13,8 @@ public class GameRepository : BaseRepository<GameData>, IGameRepository
 
     public override GameData GetOne(string id)
     {
-        var card = GetAll().FirstOrDefault(c => c.Id == id);
-        return card ?? throw new KeyNotFoundException($"Game with ID {id} not found.");
+        var game = GetAll().FirstOrDefault(c => c.Id == id);
+        return game ?? throw new KeyNotFoundException($"Game with ID {id} not found.");
     }
 
     public override void Update(GameData entity)
@@ -28,7 +28,7 @@ public class GameRepository : BaseRepository<GameData>, IGameRepository
             entity.OngoingRaid);
     }
 
-    public void UpdateGame(string id, string name, ResourceData resources, IList<string> unlockedCardIds, IList<string> unlockedCaptainIds, RaidData? ongoingRaid = null)
+    public void UpdateGame(string id, string name, Loot resources, IList<string> unlockedCardIds, IList<string> unlockedCaptainIds, RaidData? ongoingRaid = null)
     {
         var datas = GetAll();
         GameData? game = datas.FirstOrDefault(c => c.Id == id) ?? throw new KeyNotFoundException($"Game with ID {id} not found.");

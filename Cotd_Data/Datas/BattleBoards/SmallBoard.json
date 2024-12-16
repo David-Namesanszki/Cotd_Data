@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "Coordinates": {
+
+    },
+    "type": "UnitTile",
+    "teamSide": "Red"
+  },
+  {
+    "id": "2",
+    "Coordinates": {
+
+    },
+    "type": "ConstructionTile",
+    "teamSide": "Blue"
+  },
+]

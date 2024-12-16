@@ -1,29 +1,39 @@
 [
   {
-    "id": "3d6a6941-1e00-42cb-b44e-533a1bafd60b",
-    "name": "Csa",
+    "name": "",
     "resources": {
-      "heartwoodAmount": 0,
-      "barkOreAmount": 0,
-      "bloodSapAmount": 0
+      "HeartwoodAmount": 0,
+      "BarkOreAmount": 0,
+      "BloodSapAmount": 0
     },
+    "playerXP": 0,
     "unlockedCards": [],
     "unlockedCaptains": [],
     "ongoingRaid": {
-      "currentLocation": "4568a3b4-fe1d-4a66-ac43-ac3997bb9f15",
+      "currentLocation": "c1b93112-ec7a-4e0b-a02c-28e3123e24fc",
       "map": {
         "locationPaths": [],
-        "locations": []
+        "locations": [],
+        "currentLocation": "12d4687b-9195-4619-a0b8-5ab66ab5b9f0",
+        "id": "1beab225-b3c8-46b7-adcc-a9d64e281f48"
       },
       "loot": {
-        "heartwoodAmount": 0,
-        "barkOreAmount": 0,
-        "bloodSapAmount": 0
+        "HeartwoodAmount": 0,
+        "BarkOreAmount": 0,
+        "BloodSapAmount": 0
       },
-      "deck": {
-        "id": "05f43eff-f5d9-404e-9c0e-e6a6aa550ad1",
-        "cards": []
-      }
-    }
+      "deck": [],
+      "captain": {
+        "image": "",
+        "name": "",
+        "health": 0,
+        "power": 0,
+        "armor": 0,
+        "cards": [],
+        "id": "907ae198-bb78-4eb0-93bf-e8eaef373251"
+      },
+      "id": "4524ec6c-1491-4d81-8051-af3a7c081a4b"
+    },
+    "id": "b1f408e7-ad05-4213-b00b-3ee457a57f7a"
   }
 ]

@@ -1,0 +1,27 @@
+[
+  {
+    "$type": "CommandCardData",
+    "name": "Command Card",
+    "description": "Hala luja",
+    "cardType": 0,
+    "image": "",
+    "envoyCost": 2,
+    "effects": [],
+    "id": "8d211027-69c0-4d45-b7a3-36a0f4d1f869"
+  },
+  {
+    "$type": "UnitCardData",
+    "turnsToFormation": 1,
+    "health": 10,
+    "power": 1000,
+    "armor": 2,
+    "unitType": 0,
+    "name": "Unit Card",
+    "description": "No no",
+    "cardType": 4,
+    "image": "",
+    "envoyCost": 3,
+    "effects": [],
+    "id": "8ba03601-e73a-4fd3-a11a-c113d75a32dc"
+  }
+]

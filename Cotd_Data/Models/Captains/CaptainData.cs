@@ -2,11 +2,8 @@
 
 namespace Cotd_Data.Models.Captains;
 
-public class CaptainData
+public class CaptainData : EntityData
 {
-	[JsonPropertyName("id")]
-	public string Id { get; set; } = string.Empty;
-
 	[JsonPropertyName("image")]
 	public string Image { get; set; } = string.Empty;
 
@@ -15,15 +12,29 @@ public class CaptainData
 
 	[JsonPropertyName("health")]
 	public int Health { get; set; } = 0;
+
 	[JsonPropertyName("power")]
 	public int Power { get; set; } = 0;
+
 	[JsonPropertyName("armor")]
 	public int Armor { get; set; } = 0;
+
 	[JsonPropertyName("cards")]
 	public IList<string> CardIds { get; set; } = [];
 
 	public override string ToString()
 	{
-		return $"CaptainData: Id = {Id}, Image = {Image}, Name = {Name}, Health = {Health}, Power = {Power}, Armor = {Armor}";
+		string cardsSummary = CardIds != null && CardIds.Count > 0
+			? $"[{string.Join(", ", CardIds)}]"
+			: "[]";
+
+		return $"{nameof(CaptainData)}: " +
+			   $"{nameof(Id)}={Id}, " +
+		       $"{nameof(Name)}={Name}, " +
+		       $"{nameof(Image)}={Image}, " +
+		       $"{nameof(Health)}={Health}, " +
+		       $"{nameof(Power)}={Power}, " +
+		       $"{nameof(Armor)}={Armor}, " +
+		       $"{nameof(CardIds)}={cardsSummary}";
 	}
 }
